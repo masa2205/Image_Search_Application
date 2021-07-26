@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SearchBar from "./components/SearchBar";
 import ImageList from "./components/ImageList";
+import logo from "./pixabaylogo.png";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -9,7 +10,7 @@ const App = () => {
   const onSearchSubmit = async (term) => {
     try {
       const params = {
-        key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        key: Apikey,
         q: term,
       };
       const response = await axios.get("https://pixabay.com/api/", { params });
@@ -23,6 +24,7 @@ const App = () => {
   };
   return (
     <div className="ui container" style={{ marginTop: "20px" }}>
+      <img src={logo} alt="pixabay-logo" className="pixabay-logo" />
       <SearchBar onSubmit={onSearchSubmit} />
       <ImageList images={images} />
     </div>
